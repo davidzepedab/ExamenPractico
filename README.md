@@ -28,7 +28,7 @@ El path viene dinamico por defecto utilizando la variable `${basedir}` para gene
 
 La direccion es: **ExamenPractico\bin\Debug\net6.0\logs**
 
-El programa utiliza **Swagger** para utilizar el servicio y testear las requests y las responses de la API.
+El programa viene con Swagger por defecto pero se puede utilizar un cliente REST.
 
 Por el diseño del examen se asume que la tabla **Almacens** ya viene poblada por defecto. Por lo que para razones de desarrollo y debugging se utilizo el siguiente query:
 
@@ -40,6 +40,66 @@ insert into Almacens values('Almacen San Benito','Almacen rentado, en la colonia
 insert into Almacens values('Almacen Balderrama','Almacen bodega aurrera, en la colonia balderrama')
 insert into Almacens values('Almacen Pitic','Almacen en el centro de hermosillo')
 ```
+
+# Referencias de la API
+
+URL Base: https://localhost:7182
+
+#### Obtener todos los articulos
+
+```http
+GET /api/Articulo
+```
+
+#### Añadir articulo
+
+```http
+POST /api/Articulo
+```
+| Body | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `nombre` | `string` | Nombre del articulo |
+| `descripcion` | `string` | Descripcion del articulo |
+| `precio` | `int` | Nombre del articulo |
+
+### Actualizar articulo existente
+
+```http
+PUT /api/Articulo
+```
+
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `articuloId`| `int`    | Id del articulo a actualizar |
+| `nombre` | `string` | Nombre del articulo |
+| `descripcion` | `string` | Descripcion del articulo |
+| `precio` | `int` | Nombre del articulo |
+
+#### Obtener articulo por Id
+
+```http
+GET /api/Articulo/{id}
+```
+
+#### Eliminar articulo por id
+
+```http
+DELETE /api/Articulo/{id}
+```
+
+#### Añadir stock
+
+```http
+POST /api/Stock
+```
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `cantidad`| `int`    | Cantidad de stock |
+| `lote` | `string` | Lote (llave unica) |
+| `fecha` | `string` | Fecha de registro, ejemplo: "2023-03-06T06:00:43.327Z" |
+| `articuloId` | `int` | Id del articulo |
+| `almacenId` | `int` | Id del almacen |
+
 
 ---
 
